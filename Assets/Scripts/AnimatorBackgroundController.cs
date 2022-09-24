@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class AnimatorBackgroundController : MonoBehaviour
 {
-    public static class States
+    public static class Params
     {
-        public const string Play = nameof(Play);
+        public const string AnimationSpeed = nameof(AnimationSpeed);
     }
 }

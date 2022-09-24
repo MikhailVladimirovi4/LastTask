@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
     private Animator _animator;
     private Rigidbody _rigidbody;
 
-    public UnityEvent<float> ChangedSpeed;
+    public event UnityAction<float> ChangedSpeed;
 
     private void Start()
     {
@@ -33,15 +33,19 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+
         if (_targetPosition != transform.position)
             transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _stepSpeedX * Time.deltaTime);
 
         if (_currentSpeed != _targetSpeed)
-        {
-            _currentSpeed = _targetSpeed;
-            ChangedSpeed?.Invoke(_currentSpeed);
-            _animator.SetFloat(AnimatorHeroController.Params.Speed, _currentSpeed);
-        }
+            SetSpeed(_targetSpeed);
+    }
+
+    private void SetSpeed(float targetSpeed)
+    {
+        _currentSpeed = targetSpeed;
+        ChangedSpeed?.Invoke(_currentSpeed);
+        _animator.SetFloat(AnimatorHeroController.Params.Speed, _currentSpeed);
     }
 
     public void TryStepLeft()
@@ -67,6 +71,6 @@ public class Movement : MonoBehaviour
 
     private void SetPosition(float stepSize)
     {
-        _targetPosition = new Vector2(_targetPosition.x + stepSize, _targetPosition.y);
+        _targetPosition = new Vector2(transform.position.x + stepSize, transform.position.y);
     }
 }

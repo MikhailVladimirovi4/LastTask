@@ -14,10 +14,6 @@ public class Background : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
-    }
-
-    private void OnEnable()
-    {
         _heroMovement.ChangedSpeed += SetSpeedAnimation;
     }
 
@@ -28,6 +24,6 @@ public class Background : MonoBehaviour
 
     private void SetSpeedAnimation(float speed)
     {
-        _animator.SetFloat(AnimatorBackgroundController.States.Play, speed);
+        _animator.SetFloat(AnimatorBackgroundController.Params.AnimationSpeed, speed);
     }
 }
