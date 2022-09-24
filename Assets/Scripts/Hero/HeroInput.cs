@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class HeroInput : MonoBehaviour
 {
+    [SerializeField] private FixedJoystick _joystick;
+    [SerializeField] private float _movementTrigger;
+
     private Movement _movement;
 
     private void Start()
@@ -13,10 +16,13 @@ public class HeroInput : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
+        if (_joystick.Horizontal < -_movementTrigger)
             _movement.TryStepLeft();
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (_joystick.Horizontal > _movementTrigger)
             _movement.TryStepRight();
+
+        if (_joystick.Vertical > _movementTrigger)
+            _movement.TryJump();
     }
 }

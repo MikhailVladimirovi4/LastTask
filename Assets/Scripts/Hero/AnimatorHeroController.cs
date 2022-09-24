@@ -6,6 +6,5 @@ public class AnimatorHeroController : MonoBehaviour
     {
         public const string Speed = nameof(Speed);
         public const string Jump = nameof(Jump);
-
     }
 }
