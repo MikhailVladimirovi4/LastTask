@@ -1,17 +1,17 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Movement))]
+[RequireComponent(typeof(HeroMovement))]
 
 public class HeroInput : MonoBehaviour
 {
     [SerializeField] private FixedJoystick _joystick;
     [SerializeField] private float _movementTrigger;
 
-    private Movement _movement;
+    private HeroMovement _movement;
 
     private void Start()
     {
-        _movement = GetComponent<Movement>();
+        _movement = GetComponent<HeroMovement>();
     }
 
     private void Update()

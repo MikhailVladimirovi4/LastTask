@@ -7,19 +7,13 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
-    [SerializeField] private Movement _heroMovement;
+    [SerializeField] private HeroMovement _heroMovement;
 
     private Animator _animator;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        _heroMovement.ChangedSpeed += SetSpeedAnimation;
-    }
-
-    private void OnDisable()
-    {
-        _heroMovement.ChangedSpeed -= SetSpeedAnimation;
     }
 
     private void SetSpeedAnimation(float speed)
