@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private List<DangerItem> _items;
     [SerializeField] private TimeModifer _TimeModifer;
     [SerializeField] private int _delaySpawnTime;
-    [SerializeField] private int _delaySpawnItem;
+    [SerializeField] private float _delaySpawnItem;
     [SerializeField] private Transform _itemTargetMovement;
     [SerializeField] private HeroMovement _heroMovement;
     [SerializeField] private float _startSpeedItem;

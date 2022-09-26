@@ -12,6 +12,7 @@ public class HeroMovement : MonoBehaviour
     [SerializeField] private int _jumpForce;
     [SerializeField] private float _jumpTrigger;
     [SerializeField] private float _stepSpeedChange;
+    [SerializeField] private TrailDust _trailDust;
 
     private float _currentSpeed;
     private Vector3 _targetPosition;
@@ -21,13 +22,13 @@ public class HeroMovement : MonoBehaviour
 
     public void TryStepLeft()
     {
-        if (_targetPosition.x > -_stepSizeX)
+        if (_targetPosition.x > -_stepSizeX && _targetPosition.x == transform.position.x)
             SetPosition(-_stepSizeX);
     }
 
     public void TryStepRight()
     {
-        if (_targetPosition.x < _stepSizeX)
+        if (_targetPosition.x < _stepSizeX && _targetPosition.x == transform.position.x)
             SetPosition(_stepSizeX);
     }
 
@@ -37,8 +38,7 @@ public class HeroMovement : MonoBehaviour
         {
             _rigidbody.AddForce(0,0,0);
             _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode.Impulse);
-            _animator.SetTrigger(AnimatorHeroController.Params.Jump);
-        }
+            _animator.SetTrigger(AnimatorHeroController.Params.Jump);        }
     }
 
     private void Start()
@@ -57,6 +57,8 @@ public class HeroMovement : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _stepSpeedX * Time.deltaTime);
         }
+
+        _trailDust.gameObject.SetActive(transform.position.y == _startPositionY);
     }
 
     private void SetPosition(float stepSize)

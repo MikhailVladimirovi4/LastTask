@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _storedTime: 30
-  _offsetPositionY: 0.5
+  _offsetPositionY: 3
 --- !u!54 &-1340187767463373552
 Rigidbody:
   m_ObjectHideFlags: 0

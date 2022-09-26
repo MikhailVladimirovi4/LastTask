@@ -16,7 +16,7 @@ public class TimeModifer : SpawnItems
     {
         transform.position = Vector3.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
 
-        if (transform.position == Target.position)
+        if (transform.position.z == Target.position.z)
             Destroy();
     }
     public void Destroy()
