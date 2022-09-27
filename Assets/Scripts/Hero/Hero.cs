@@ -10,8 +10,7 @@ public class Hero : MonoBehaviour
 
     private Animator _animator;
     public event UnityAction Dying;
-
-    public int Health { get; private set; }
+    public event UnityAction<int> HealthChanged;
 
     public float LifeTime { get; private set; }
 
@@ -22,9 +21,9 @@ public class Hero : MonoBehaviour
 
     private void Start()
     {
-        Health = _health;
         LifeTime = _lifeTime;
         _animator = GetComponent<Animator>();
+        HealthChanged?.Invoke(_health);
     }
 
     private void Update()
@@ -37,9 +36,10 @@ public class Hero : MonoBehaviour
 
     private void TakeDamage(int damage)
     {
-        Health -= damage;
+        _health -= damage;
+        HealthChanged?.Invoke(_health);
 
-        if (Health <= 0)
+        if (_health <= 0)
             Dying?.Invoke();
 
     }
