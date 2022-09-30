@@ -8,7 +8,7 @@ public class HeroMovement : MonoBehaviour
 {
     [SerializeField] private float _stepSizeX;
     [SerializeField] private float _stepSpeedX;
-    [SerializeField] private float _startSpeed;
+    [SerializeField] private float _speed;
     [SerializeField] private int _jumpForce;
     [SerializeField] private float _jumpTrigger;
     [SerializeField] private float _stepSpeedChange;
@@ -19,6 +19,8 @@ public class HeroMovement : MonoBehaviour
     private float _startPositionY;
     private Animator _animator;
     private Rigidbody _rigidbody;
+
+    public float GetSpeed() => _speed;
 
     public void TryStepLeft()
     {
@@ -45,7 +47,7 @@ public class HeroMovement : MonoBehaviour
     {
         _targetPosition = transform.position;
         _startPositionY = transform.position.y;
-        _currentSpeed = _startSpeed;
+        _currentSpeed = _speed;
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
         _animator.SetFloat(AnimatorHeroController.Params.Speed, _currentSpeed);

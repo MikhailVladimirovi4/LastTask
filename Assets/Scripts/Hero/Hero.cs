@@ -6,32 +6,17 @@ using UnityEngine.Events;
 public class Hero : MonoBehaviour
 {
     [SerializeField] private int _health;
-    [SerializeField] private float _lifeTime;
+    [SerializeField] private GameController _controller;
 
     private Animator _animator;
     public event UnityAction Dying;
     public event UnityAction<int> HealthChanged;
+    public event UnityAction<float> AddTime;
 
-    public float LifeTime { get; private set; }
-
-    public void AddLifeTime(float time)
+    private void OnEnable()
     {
-        LifeTime += time;
-    }
-
-    private void Start()
-    {
-        LifeTime = _lifeTime;
         _animator = GetComponent<Animator>();
         HealthChanged?.Invoke(_health);
-    }
-
-    private void Update()
-    {
-        LifeTime -= Time.deltaTime;
-
-        if (LifeTime <= 0)
-            Dying?.Invoke();
     }
 
     private void TakeDamage(int damage)
@@ -40,15 +25,19 @@ public class Hero : MonoBehaviour
         HealthChanged?.Invoke(_health);
 
         if (_health <= 0)
-            Dying?.Invoke();
+            Die();
+    }
 
+    private void Die()
+    {
+        Dying?.Invoke();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out TimeModifer timeModifer))
         {
-            AddLifeTime(timeModifer.StoredTime);
+            AddTime?.Invoke(timeModifer.StoredTime);
             timeModifer.Destroy();
         }
         else if (other.TryGetComponent(out DangerItem dangerItem))
