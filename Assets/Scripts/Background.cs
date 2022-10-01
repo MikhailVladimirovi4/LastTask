@@ -1,6 +1,3 @@
 using UnityEngine;
 
-public class Background : MonoBehaviour
-{
-
-}
+public class Background : MonoBehaviour { }
