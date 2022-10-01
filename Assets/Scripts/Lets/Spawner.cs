@@ -1,41 +1,38 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<DangerItem> _items;
-    [SerializeField] private TimeModifer _TimeModifer;
-    [SerializeField] private int _delaySpawnTime;
     [SerializeField] private float _delaySpawnItem;
     [SerializeField] private Transform _itemTargetMovement;
     [SerializeField] private HeroMovement _heroMovement;
     [SerializeField] private float _startSpeedItem;
 
-    private float _elapsedTimeSpawnTime = 0;
-    private float _elapsedTimeSpawnItem = 0;
+    private Coroutine _createItem;
+    private WaitForSeconds _pauseSpawn;
 
+    private void Start()
+    {
+        _pauseSpawn = new WaitForSeconds(_delaySpawnItem);
+    }
 
     private void Update()
     {
-        _elapsedTimeSpawnTime += Time.deltaTime;
-        _elapsedTimeSpawnItem += Time.deltaTime;
-
-        if (_elapsedTimeSpawnTime > _delaySpawnTime)
-        {
-            _elapsedTimeSpawnTime = 0;
-            CreateItem(_TimeModifer);
+        if (_createItem != null)
             return;
-        }
-        else if(_elapsedTimeSpawnItem > _delaySpawnItem)
-        {
-            _elapsedTimeSpawnItem = 0;
-            CreateItem(_items[Random.Range(0,_items.Count)]);
-        }
+
+        _createItem = StartCoroutine(CreateItem());
     }
 
-    private void CreateItem( SpawnItems item)
+    private IEnumerator CreateItem()
     {
-       var _speedModiferObject = Instantiate(item, transform.position, Quaternion.identity);
+        var _speedModiferObject = Instantiate(_items[Random.Range(0, _items.Count)], transform.position, Quaternion.identity);
         _speedModiferObject.Initialize(_startSpeedItem, _itemTargetMovement);
+
+        yield return _pauseSpawn;
+
+        _createItem = null;
     }
 }

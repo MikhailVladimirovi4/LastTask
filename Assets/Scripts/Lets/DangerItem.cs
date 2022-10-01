@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class DangerItem : SpawnItems
+public class DangerItem : SpawnItem
 {
-    [SerializeField] private int attackValue;
+    [SerializeField] private int _attackValue;
 
-    public int AttackValue => attackValue;
+    public int AttackValue => _attackValue;
 
     private void Update()
     {

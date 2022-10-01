@@ -22,15 +22,9 @@ public class BearMovement : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        Transform targetTransform = _hero.transform;
-        float currentPozitionX = transform.position.x;
-        float currentPozitionZ = transform.position.z;
-
-        while (transform.position.z != targetTransform.position.z)
+        while (transform.position != _hero.transform.position)
         {
-            currentPozitionZ = Mathf.MoveTowards(transform.position.z, targetTransform.position.z, _speed * Time.deltaTime);
-            currentPozitionX = Mathf.MoveTowards(transform.position.x, targetTransform.position.x, _speed * Time.deltaTime);
-            transform.position = new Vector3(currentPozitionX, transform.position.y, currentPozitionZ);
+            transform.Translate((_hero.transform.position - transform.position).normalized * _speed *Time.deltaTime);
 
             yield return null;
         }

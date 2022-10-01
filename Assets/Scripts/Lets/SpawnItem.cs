@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpawnItems : MonoBehaviour
+public class SpawnItem : MonoBehaviour
 {
     protected Transform Target;
     protected float Speed;

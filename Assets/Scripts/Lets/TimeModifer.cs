@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TimeModifer : SpawnItems
+public class TimeModifer : SpawnItem
 {
     [SerializeField] private float _storedTime;
     [SerializeField] private float _offsetPositionY;
