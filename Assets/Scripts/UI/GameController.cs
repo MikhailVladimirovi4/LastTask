@@ -49,11 +49,17 @@ public class GameController : MonoBehaviour
         _joystik.gameObject.SetActive(true);
         _distanceCount.enabled = true;
         Time.timeScale = 1;
+
+        foreach (var spawner in _spawners)
+            spawner.StartSpawn();
     }
     private void FinishGame()
     {
         _bearMovement.GetAttack();
         _gameOverScreen.Open();
+
+        foreach (var spawner in _spawners)
+            spawner.StopSpawn();
     }
 
     private void AddTime(float time)

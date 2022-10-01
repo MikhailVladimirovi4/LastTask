@@ -455,8 +455,6 @@ MonoBehaviour:
   - {fileID: 2937159073573989603, guid: 0e8b65df988d2eb418289814df1f4045, type: 3}
   - {fileID: 2847850845588965536, guid: 6f0f86f69d101944fbed7e850860f1e6, type: 3}
   - {fileID: 5061538441770094277, guid: 36b2f6626b4412440985d7162c1035f5, type: 3}
-  _TimeModifer: {fileID: 9191843883691672015, guid: 82f2c0b5915e8954f9db43f77f0c5dc6, type: 3}
-  _delaySpawnTime: 52
   _delaySpawnItem: 1.9
   _itemTargetMovement: {fileID: 635793205}
   _heroMovement: {fileID: 1997952809004827}
@@ -816,8 +814,6 @@ MonoBehaviour:
   - {fileID: 2937159073573989603, guid: 0e8b65df988d2eb418289814df1f4045, type: 3}
   - {fileID: 2847850845588965536, guid: 6f0f86f69d101944fbed7e850860f1e6, type: 3}
   - {fileID: 5061538441770094277, guid: 36b2f6626b4412440985d7162c1035f5, type: 3}
-  _TimeModifer: {fileID: 9191843883691672015, guid: 82f2c0b5915e8954f9db43f77f0c5dc6, type: 3}
-  _delaySpawnTime: 65
   _delaySpawnItem: 1.7
   _itemTargetMovement: {fileID: 1729364344}
   _heroMovement: {fileID: 1997952809004827}
@@ -2800,8 +2796,6 @@ MonoBehaviour:
   - {fileID: 2937159073573989603, guid: 0e8b65df988d2eb418289814df1f4045, type: 3}
   - {fileID: 2847850845588965536, guid: 6f0f86f69d101944fbed7e850860f1e6, type: 3}
   - {fileID: 5061538441770094277, guid: 36b2f6626b4412440985d7162c1035f5, type: 3}
-  _TimeModifer: {fileID: 9191843883691672015, guid: 82f2c0b5915e8954f9db43f77f0c5dc6, type: 3}
-  _delaySpawnTime: 53
   _delaySpawnItem: 2.3
   _itemTargetMovement: {fileID: 1898367427}
   _heroMovement: {fileID: 1997952809004827}
@@ -9172,7 +9166,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hero: {fileID: 1997952809004825}
-  _spawners: []
+  _spawners:
+  - {fileID: 1126073051}
+  - {fileID: 290300187}
+  - {fileID: 169201509}
   _joystik: {fileID: 2929252284087757170}
   _startScreen: {fileID: 928684391}
   _gameOverScreen: {fileID: 942395673}

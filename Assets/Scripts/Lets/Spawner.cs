@@ -12,27 +12,35 @@ public class Spawner : MonoBehaviour
 
     private Coroutine _createItem;
     private WaitForSeconds _pauseSpawn;
+    private bool isSpawn;
 
     private void Start()
     {
         _pauseSpawn = new WaitForSeconds(_delaySpawnItem);
     }
 
-    private void Update()
+    public void StartSpawn()
     {
         if (_createItem != null)
             return;
 
-        _createItem = StartCoroutine(CreateItem());
+        isSpawn = true;
+        StartCoroutine(CreateItem());
+    }
+
+    public void StopSpawn()
+    {
+        isSpawn = false;
     }
 
     private IEnumerator CreateItem()
     {
-        var _speedModiferObject = Instantiate(_items[Random.Range(0, _items.Count)], transform.position, Quaternion.identity);
-        _speedModiferObject.Initialize(_startSpeedItem, _itemTargetMovement);
+        while (isSpawn)
+        {
+            var _speedModiferObject = Instantiate(_items[Random.Range(0, _items.Count)], transform.position, Quaternion.identity);
+            _speedModiferObject.Initialize(_startSpeedItem, _itemTargetMovement);
 
-        yield return _pauseSpawn;
-
-        _createItem = null;
+            yield return _pauseSpawn;
+        }
     }
 }
